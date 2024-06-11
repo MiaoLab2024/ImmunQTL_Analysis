@@ -56,9 +56,9 @@ library(DoubletFinder)
 for (i in 1:length(sceList)) {
   sweep.res.list <- paramSweep_v3(sceList[[i]], PCs = 1:10, sct = F)
   sweep.stats <- summarizeSweep(sweep.res.list, GT = FALSE)  
-  bcmvn <- find.pK(sweep.stats) #可以看到最佳参数的点
-  pK_bcmvn <- bcmvn$pK[which.max(bcmvn$BCmetric)] %>% as.character() %>% as.numeric() #提取最佳pk值
-  DoubletRate1 = ncol(sceList[[i]])*8*1e-6 #更通用
+  bcmvn <- find.pK(sweep.stats) 
+  pK_bcmvn <- bcmvn$pK[which.max(bcmvn$BCmetric)] %>% as.character() %>% as.numeric() 
+  DoubletRate1 = ncol(sceList[[i]])*8*1e-6 
   homotypic.prop <- modelHomotypic(sceList[[i]]$seurat_clusters) 
   nExp_poi <- round(DoubletRate1*ncol(sceList[[i]])) 
   nExp_poi.adj <- round(nExp_poi*(1-homotypic.prop))
@@ -85,7 +85,7 @@ names(scRNA1@reductions)
 harmony_embeddings <- Embeddings(scRNA1, 'harmony')
 scRNA1 <- RunTSNE(scRNA1, reduction = "harmony", dims = 1:15)
 scRNA1 <- RunUMAP(scRNA1, reduction = "harmony", dims = 1:15)
-scRNA1=FindNeighbors(scRNA1, reduction = "harmony", dims = 1:15)#reduction = "harmony"不能掉，否则cluster很多
+scRNA1=FindNeighbors(scRNA1, reduction = "harmony", dims = 1:15)
 scRNA1=FindClusters(scRNA1,resolution = 0.8)
 p1=DimPlot(scRNA1,reduction = "umap",group.by = "RNA_snn_res.0.8",label=T)
 p2=DimPlot(scRNA1,reduction = "umap",group.by = "orig.ident",label=T)
@@ -140,7 +140,7 @@ harmony_embeddings <- Embeddings(scRNA1.CD45pos, 'harmony')
 
 scRNA1.CD45pos <- RunTSNE(scRNA1.CD45pos, reduction = "harmony", dims = 1:20)
 scRNA1.CD45pos <- RunUMAP(scRNA1.CD45pos, reduction = "harmony", dims = 1:20)
-scRNA1.CD45pos=FindNeighbors(scRNA1.CD45pos, reduction = "harmony", dims = 1:20)#reduction = "harmony"不能掉，否则cluster很多
+scRNA1.CD45pos=FindNeighbors(scRNA1.CD45pos, reduction = "harmony", dims = 1:20)
 scRNA1.CD45pos=FindClusters(scRNA1.CD45pos,resolution = 0.8)
 p5=DimPlot(scRNA1.CD45pos,reduction = "umap",group.by = "RNA_snn_res.0.8",label=T)
 p6=DimPlot(scRNA1.CD45pos,reduction = "umap",group.by = "orig.ident",label=T)
@@ -167,7 +167,7 @@ DotPlot(scRNA1.CD45pos, features = celltype_marker2)+
   theme(panel.grid = element_blank(), axis.text.x=element_text(hjust = 1,vjust=0.5,angle=90))+
   labs(x=NULL,y=NULL)+guides(size=guide_legend(order=3))+
   scale_color_gradientn(values = seq(0,1,0.2),colours = c('#330066','#336699','#66CC66','#FFCC33'))
-ggsave(filename = "Immune_marker.png",device = "png",width = 44,height = 33,units = "cm")#13,17cluster去掉
+ggsave(filename = "Immune_marker.png",device = "png",width = 44,height = 33,units = "cm")
 
 celltype=data.frame(ClusterID=0:20,
                     celltype=0:20) 
