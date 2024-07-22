@@ -1,3 +1,6 @@
+#Nichenet is another method to infer intercellular communication. While NicheNet based on the expression and downstream targets of ligand-receptor pairs, could be applied to predict the regulatory activity of ligands. 
+#Together, these two tools provide complementary insights into the mechanisms of cell-cell communication.
+
 library(nichenetr)
 ##Load prior data for nichenet analysis
 lr_network = readRDS(url("https://zenodo.org/record/7074291/files/lr_network_human_21122021.rds"))
