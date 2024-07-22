@@ -1,3 +1,6 @@
+#CellChat database consists of three parts, including paracrine/autocrine signaling interactions, extracellular matrix (ECM)-receptor interactions and cell-cell contact interactions.
+#Consequently, our analysis will yield results in these three areas.
+
 library(CellChat)
 library(tidyverse)
 library(ggalluvial)
