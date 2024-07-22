@@ -1,3 +1,14 @@
+#The work flow to process the scRNA-seq, which includes:
+#a. Load counts data and metadata from pre-processing scRNA-seq
+#b. Create seurat object; filter cells
+#c. Generate QC data and plots
+#d. Filter based on number of features, counts and percent MT
+#e. Normalize and scale data
+#f. Identify variable features
+#g. PCA analysis and visualization of components
+#h. UMAP/TSNE Clustering and visualization
+#i. Cell-type annotations
+
 library(Seurat)
 library(tidyverse)
 library(dplyr)
