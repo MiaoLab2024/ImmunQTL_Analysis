@@ -1,3 +1,7 @@
+#To prioritize genes that mediate genetic effect on cellular phenotypes, we nominated target genes of immunQTLs using a comprehensive framework that integrated physical distance, eQTLs and MAGMA. We then filtered for those significantly correlated with cellular fractions.
+#Gene-cell associations are calculated by partial correlation coefficient with tumor purity adjusted.
+#Therefore, we first conducted normalization on the expression data, then we estimate tumor purity.
+
 library(ComplexHeatmap)
 library(TCGAbiolinks)
 library(SummarizedExperiment)
